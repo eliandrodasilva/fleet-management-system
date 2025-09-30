@@ -15,11 +15,11 @@ public class Vehicle {
     private String licensePlate;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "brand", length = 100, nullable = false)
+    @Column(name = "brand", length = 50, nullable = false)
     private VehicleBrand brand;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "model", length = 100, nullable = false)
+    @Column(name = "model", length = 50, nullable = false)
     private VehicleModel model;
 
     @Column(name = "model_year", nullable = false)
