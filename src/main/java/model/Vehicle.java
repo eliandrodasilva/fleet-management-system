@@ -14,11 +14,13 @@ public class Vehicle {
     @Column(name = "license_plate", length = 10, nullable = false, unique = true)
     private String licensePlate;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "brand", length = 100, nullable = false)
-    private String brand;
+    private VehicleBrand brand;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "model", length = 100, nullable = false)
-    private String model;
+    private VehicleModel model;
 
     @Column(name = "model_year", nullable = false)
     private int modelYear;
@@ -38,9 +40,9 @@ public class Vehicle {
 
     public Vehicle() {}
 
-    public Vehicle(String licensePlate, String brand, String model, int modelYear, int currentKilometers, VehicleStatus status) {
+    public Vehicle(String licensePlate, VehicleModel model, int modelYear, int currentKilometers, VehicleStatus status) {
         this.licensePlate = licensePlate;
-        this.brand = brand;
+        this.brand = model.getVehicleBrand();
         this.model = model;
         this.modelYear = modelYear;
         this.currentKilometers = currentKilometers;
@@ -60,20 +62,17 @@ public class Vehicle {
         this.licensePlate = licensePlate;
     }
 
-    public String getBrand() {
+    public VehicleBrand getBrand() {
         return brand;
     }
 
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-    public String getModel() {
+    public VehicleModel getModel() {
         return model;
     }
 
-    public void setModel(String model) {
+    public void setModel(VehicleModel model) {
         this.model = model;
+        this.brand = model.getVehicleBrand();
     }
 
     public int getModelYear() {
