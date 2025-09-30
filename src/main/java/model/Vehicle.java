@@ -129,6 +129,8 @@ public class Vehicle {
                 ", modelYear=" + modelYear +
                 ", currentKilometers=" + currentKilometers +
                 ", status=" + status +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
                 '}';
     }
 }
