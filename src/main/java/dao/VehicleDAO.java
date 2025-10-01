@@ -4,7 +4,7 @@ import model.Vehicle;
 
 import java.util.List;
 
-public class VehicleDAO extends GenericDAO<Vehicle, Long> {
+public class VehicleDAO extends AbstractDAOImpl<Vehicle, Long> {
 
     public VehicleDAO() {
         super(Vehicle.class);
