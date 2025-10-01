@@ -48,6 +48,8 @@ public class VehicleService {
         }
     }
 
+    public List<Vehicle> getAllVehicles() {return vehicleDAO.findAll();}
+
     public Vehicle getVehicleById(Long id) {
         return vehicleDAO.findById(id);
     }
