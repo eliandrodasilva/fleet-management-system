@@ -6,9 +6,7 @@ import java.util.List;
 
 public class VehicleDAO extends AbstractDAOImpl<Vehicle, Long> {
 
-    public VehicleDAO() {
-        super(Vehicle.class);
-    }
+    public VehicleDAO() {}
 
     public Vehicle findByLicensePlate(String licensePlate) {
         List<Vehicle> list = em.createQuery(

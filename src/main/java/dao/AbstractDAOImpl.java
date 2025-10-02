@@ -3,6 +3,7 @@ package dao;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 public abstract class AbstractDAOImpl<T, ID> implements GenericDAO<T, ID> {
@@ -11,8 +12,10 @@ public abstract class AbstractDAOImpl<T, ID> implements GenericDAO<T, ID> {
     protected EntityManager em = emf.createEntityManager();
     private Class<T> entityClass;
 
-    public AbstractDAOImpl(Class<T> entityClass) {
-        this.entityClass = entityClass;
+    @SuppressWarnings("unchecked")
+    public AbstractDAOImpl() {
+        this.entityClass = (Class<T>) ((ParameterizedType) getClass()
+                .getGenericSuperclass()).getActualTypeArguments()[0];
     }
 
     public void save(T entity) {
