@@ -14,7 +14,10 @@ public class Driver {
     @Column(name = "name", length = 255, nullable = false)
     private String name;
 
-    @Column(name = "license_number", length = 20)
+    @Column(name = "cpf", length = 11, nullable = false)
+    private String cpf;
+
+    @Column(name = "license_number", length = 11, nullable = false)
     private String licenseNumber;
 
     @Column(name = "created_at", nullable = false, updatable = false)
@@ -29,6 +32,26 @@ public class Driver {
     public Driver(String name, String licenseNumber) {
         this.name = name;
         this.licenseNumber = licenseNumber;
+    }
+
+    private void validateName() {
+        if (name == null || name.trim().isEmpty()) {
+            throw new IllegalArgumentException("Nome do motorista é obrigatório");
+        }
+    }
+
+    private void validateCPF() {
+        // Validação de CPF
+    }
+
+    private void validateLicenseNumber() {
+       // Validação de CNH
+    }
+
+    public void validate() {
+        validateName();
+        validateCPF();
+        validateLicenseNumber();
     }
 
     public Long getId() {
