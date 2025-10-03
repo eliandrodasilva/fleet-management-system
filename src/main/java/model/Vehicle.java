@@ -1,5 +1,9 @@
 package model;
 
+import model.enums.VehicleBrand;
+import model.enums.VehicleModel;
+import model.enums.VehicleStatus;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 

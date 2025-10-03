@@ -1,8 +1,8 @@
 package seed;
 
 import model.Vehicle;
-import model.VehicleModel;
-import model.VehicleStatus;
+import model.enums.VehicleModel;
+import model.enums.VehicleStatus;
 
 import java.util.ArrayList;
 import java.util.List;

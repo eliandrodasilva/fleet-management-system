@@ -2,7 +2,7 @@ package service;
 
 import dao.VehicleDAO;
 import model.Vehicle;
-import model.VehicleStatus;
+import model.enums.VehicleStatus;
 
 import java.time.Year;
 import java.util.List;
