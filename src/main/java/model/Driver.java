@@ -29,8 +29,9 @@ public class Driver {
     public Driver() {
     }
 
-    public Driver(String name, String licenseNumber) {
+    public Driver(String name, String cpf, String licenseNumber) {
         this.name = name;
+        this.cpf = cpf;
         this.licenseNumber = licenseNumber;
     }
 
