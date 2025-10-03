@@ -41,11 +41,74 @@ public class Driver {
     }
 
     private void validateCPF() {
-        // Validação de CPF
+        if (cpf == null || cpf.isEmpty()) {
+            throw new IllegalArgumentException("CPF é obrigatório");
+        }
+
+        String tempCPF = cpf;
+        tempCPF = tempCPF.replaceAll("\\D", "");
+
+        if (tempCPF.length() != 11 || tempCPF.matches("(\\d)\\1{10}")) {
+            throw new IllegalArgumentException("CPF inválido");
+        }
+
+        int soma = 0;
+        for (int i = 0; i < 9; i++) {
+            soma += (tempCPF.charAt(i) - '0') * (10 - i);
+        }
+        int primeiroDigito = 11 - (soma % 11);
+        if (primeiroDigito >= 10) primeiroDigito = 0;
+
+        if (primeiroDigito != (tempCPF.charAt(9) - '0')) {
+            throw new IllegalArgumentException("CPF inválido");
+        }
+
+        soma = 0;
+        for (int i = 0; i < 10; i++) {
+            soma += (tempCPF.charAt(i) - '0') * (11 - i);
+        }
+        int segundoDigito = 11 - (soma % 11);
+        if (segundoDigito >= 10) segundoDigito = 0;
+
+        if (segundoDigito != (tempCPF.charAt(10) - '0')) {
+            throw new IllegalArgumentException("CPF inválido");
+        }
     }
 
     private void validateLicenseNumber() {
-       // Validação de CNH
+        if (licenseNumber == null || !licenseNumber.matches("\\d{11}") || licenseNumber.matches("(\\d)\\1{10}")) {
+            throw new IllegalArgumentException("CNH inválida");
+        }
+
+        int d1 = 0, d2 = 0;
+        int[] cnhArray = new int[11];
+
+        for (int i = 0; i < 11; i++) {
+            cnhArray[i] = licenseNumber.charAt(i) - '0';
+        }
+
+        for (int i = 0, j = 9; i < 9; i++, j--) {
+            d1 += cnhArray[i] * j;
+        }
+
+        d1 = d1 % 11;
+        if (d1 >= 10) d1 = 0;
+
+        for (int i = 0, j = 1; i < 9; i++, j++) {
+            d2 += cnhArray[i] * j;
+        }
+
+        d2 = d2 % 11;
+        if (d2 >= 10) d2 = 0;
+
+        if ((cnhArray[9] == 0 && cnhArray[10] == 0) && (d1 == 10 || d2 == 10)) {
+            d1 = 0;
+            d2 = 0;
+        }
+
+        if (d1 != cnhArray[9] || d2 != cnhArray[10]) {
+            throw new IllegalArgumentException("CNH inválida");
+        }
     }
 
     public void validate() {
