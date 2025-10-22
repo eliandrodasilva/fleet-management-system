@@ -1,7 +1,9 @@
 package seed;
 
 import model.Driver;
+import model.ScheduledService;
 import service.DriverService;
+import service.ScheduledServiceService;
 import service.VehicleService;
 import model.Vehicle;
 
@@ -11,10 +13,12 @@ public class DatabaseSeeder {
 
     private VehicleService vehicleService = new VehicleService();
     private DriverService driverService = new DriverService();
+    private ScheduledServiceService scheduledServiceService = new ScheduledServiceService();
 
     public void seedAll() {
         seedVehicles();
         seedDrivers();
+        seedScheduledServices();
     }
 
     private void seedVehicles() {
@@ -40,6 +44,21 @@ public class DatabaseSeeder {
             }
         }
     }
+
+    private void seedScheduledServices() {
+        List<Vehicle> vehicles = vehicleService.getVehiclesByStatus("AVAILABLE");
+        List<ScheduledService> services = ScheduledServiceSeed.getScheduledServices(vehicles);
+
+        for (ScheduledService s : services) {
+            try {
+                scheduledServiceService.createScheduledService(s);
+                System.out.println("Serviço agendado para veículo: " + s.getVehicle().getLicensePlate());
+            } catch (IllegalArgumentException e) {
+                System.out.println("Falha ao cadastrar serviço para veículo " + s.getVehicle().getLicensePlate() + ": " + e.getMessage());
+            }
+        }
+    }
+
 
     public static void main(String[] args) {
         DatabaseSeeder seeder = new DatabaseSeeder();
