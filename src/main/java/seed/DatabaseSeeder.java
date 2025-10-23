@@ -1,8 +1,10 @@
 package seed;
 
 import model.Driver;
+import model.Location;
 import model.ScheduledService;
 import service.DriverService;
+import service.LocationService;
 import service.ScheduledServiceService;
 import service.VehicleService;
 import model.Vehicle;
@@ -14,11 +16,14 @@ public class DatabaseSeeder {
     private VehicleService vehicleService = new VehicleService();
     private DriverService driverService = new DriverService();
     private ScheduledServiceService scheduledServiceService = new ScheduledServiceService();
+    private LocationService locationService = new LocationService();
+
 
     public void seedAll() {
         seedVehicles();
         seedDrivers();
         seedScheduledServices();
+        seedLocations();
     }
 
     private void seedVehicles() {
@@ -54,6 +59,18 @@ public class DatabaseSeeder {
                 System.out.println("Serviço agendado para veículo: " + s.getVehicle().getLicensePlate());
             } catch (IllegalArgumentException e) {
                 System.out.println("Falha ao cadastrar serviço para veículo " + s.getVehicle().getLicensePlate() + ": " + e.getMessage());
+            }
+        }
+    }
+
+    private void seedLocations() {
+        List<Location> locations = LocationSeed.getLocations();
+        for (Location l : locations) {
+            try {
+                locationService.createLocation(l);
+                System.out.println("Local cadastrado: " + l.getName());
+            } catch (IllegalArgumentException e) {
+                System.out.println("Falha ao cadastrar local " + l.getName() + ": " + e.getMessage());
             }
         }
     }
