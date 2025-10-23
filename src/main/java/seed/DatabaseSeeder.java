@@ -46,8 +46,7 @@ public class DatabaseSeeder {
     }
 
     private void seedScheduledServices() {
-        List<Vehicle> vehicles = vehicleService.getVehiclesByStatus("AVAILABLE");
-        List<ScheduledService> services = ScheduledServiceSeed.getScheduledServices(vehicles);
+        List<ScheduledService> services = ScheduledServiceSeed.getScheduledServices(vehicleService.getAllVehicles());
 
         for (ScheduledService s : services) {
             try {
