@@ -4,5 +4,6 @@ public enum VehicleBrand {
     MERCEDES_BENZ,
     VOLVO,
     MARCOPOLO,
-    COMIL
+    COMIL,
+    VOLKSWAGEN
 }

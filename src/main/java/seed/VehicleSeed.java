@@ -18,6 +18,7 @@ public class VehicleSeed {
         vehicles.add(new Vehicle("DEF9876", VehicleModel.VOLVO_9700, 2020, 50000, VehicleStatus.IN_USE));
         vehicles.add(new Vehicle("MNO1357", VehicleModel.VOLVO_9900, 2022, 40000, VehicleStatus.IN_USE));
         vehicles.add(new Vehicle("GHI5432", VehicleModel.LUMINA_COMIL, 2019, 75000, VehicleStatus.INACTIVE));
+        vehicles.add(new Vehicle("HOT6969", VehicleModel.VOYAGE, 1987, 120000,VehicleStatus.AVAILABLE));
 
         return vehicles;
     }

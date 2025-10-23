@@ -8,7 +8,8 @@ public enum VehicleModel {
     MERCEDES_O500_RS(VehicleBrand.MERCEDES_BENZ),
     VOLVO_9700(VehicleBrand.VOLVO),
     VOLVO_9900(VehicleBrand.VOLVO),
-    LUMINA_COMIL(VehicleBrand.COMIL);
+    LUMINA_COMIL(VehicleBrand.COMIL),
+    VOYAGE(VehicleBrand.VOLKSWAGEN);
 
     private final VehicleBrand vehicleBrand;
 
