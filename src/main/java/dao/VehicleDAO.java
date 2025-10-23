@@ -1,6 +1,7 @@
 package dao;
 
 import model.Vehicle;
+import model.enums.VehicleStatus;
 
 import java.util.List;
 
@@ -17,9 +18,10 @@ public class VehicleDAO extends AbstractDAOImpl<Vehicle, Long> {
     }
 
     public List<Vehicle> findByStatus(String status) {
+        VehicleStatus enumStatus = VehicleStatus.valueOf(status.toUpperCase());
         return em.createQuery(
                         "FROM Vehicle v WHERE v.status = :status", Vehicle.class)
-                .setParameter("status", status)
+                .setParameter("status", enumStatus)
                 .getResultList();
     }
 }
