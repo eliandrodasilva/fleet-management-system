@@ -1,7 +1,7 @@
 package model;
 
-import model.enums.VehicleBrand;
-import model.enums.VehicleModel;
+import model.VehicleBrand;
+import model.VehicleModel;
 import model.enums.VehicleStatus;
 
 import javax.persistence.*;
@@ -18,12 +18,12 @@ public class Vehicle {
     @Column(name = "license_plate", length = 10, nullable = false, unique = true)
     private String licensePlate;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "brand", length = 50, nullable = false)
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "brand_id")
     private VehicleBrand brand;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "model", length = 50, nullable = false)
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "model_id")
     private VehicleModel model;
 
     @Column(name = "model_year", nullable = false)
@@ -46,7 +46,7 @@ public class Vehicle {
 
     public Vehicle(String licensePlate, VehicleModel model, int modelYear, int currentKilometers, VehicleStatus status) {
         this.licensePlate = licensePlate;
-        this.brand = model.getVehicleBrand();
+        this.brand = model.getBrand();
         this.model = model;
         this.modelYear = modelYear;
         this.currentKilometers = currentKilometers;
@@ -76,7 +76,7 @@ public class Vehicle {
 
     public void setModel(VehicleModel model) {
         this.model = model;
-        this.brand = model.getVehicleBrand();
+        this.brand = model.getBrand();
     }
 
     public int getModelYear() {
@@ -126,9 +126,9 @@ public class Vehicle {
     public String toString() {
         return "Vehicle{" +
                 "id=" + id +
-                ", licensePlate='" + licensePlate + '\'' +
-                ", brand='" + brand + '\'' +
-                ", model='" + model + '\'' +
+                ", licensePlate=" + licensePlate + '\'' +
+                ", brand=" + brand + '\'' +
+                ", model=" + model + '\'' +
                 ", modelYear=" + modelYear +
                 ", currentKilometers=" + currentKilometers +
                 ", status=" + status +
