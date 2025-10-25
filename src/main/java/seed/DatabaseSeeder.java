@@ -27,7 +27,7 @@ public class DatabaseSeeder {
     }
 
     private void seedVehicles() {
-        List<Vehicle> vehicles = VehicleSeed.getVehicles();
+        List<Vehicle> vehicles = VehicleSeed.getVehicles(vechileModelService.getAllModels());
         for (Vehicle v : vehicles) {
             try {
                 vehicleService.createVehicle(v);
