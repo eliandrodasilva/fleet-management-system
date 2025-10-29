@@ -1,18 +1,14 @@
 package seed;
 
-import model.Driver;
-import model.Location;
-import model.ScheduledService;
-import service.DriverService;
-import service.LocationService;
-import service.ScheduledServiceService;
-import service.VehicleService;
-import model.Vehicle;
+import model.*;
+import service.*;
 
 import java.util.List;
 
 public class DatabaseSeeder {
 
+    private VehicleBrandService vehicleBrandService = new VehicleBrandService();
+    private VehicleModelService vehicleModelService = new VehicleModelService();
     private VehicleService vehicleService = new VehicleService();
     private DriverService driverService = new DriverService();
     private ScheduledServiceService scheduledServiceService = new ScheduledServiceService();
@@ -20,14 +16,41 @@ public class DatabaseSeeder {
 
 
     public void seedAll() {
+        seedVehicleBrands();
+        seedVehicleModels();
         seedVehicles();
         seedDrivers();
         seedScheduledServices();
         seedLocations();
     }
 
+    private void seedVehicleBrands() {
+        List<VehicleBrand> brands = BrandSeed.getBrands();
+        for (VehicleBrand b : brands) {
+            try {
+                vehicleBrandService.createVehicleBrand(b);
+                System.out.println("Marca cadastrada: " + b.getName());
+            } catch (IllegalArgumentException e) {
+                System.out.println("Falha ao cadastrar marca " + b.getName() + ": " + e.getMessage());
+            }
+        }
+    }
+
+    private void seedVehicleModels() {
+        List<VehicleBrand> brands = vehicleBrandService.findAll();
+        List<VehicleModel> models = VehicleModelSeed.getModels(brands);
+        for (VehicleModel m : models) {
+            try {
+                vehicleModelService.createVehicleModel(m);
+                System.out.println("Modelo cadastrado: " + m.getName() + " (" + m.getBrand().getName() + ")");
+            } catch (IllegalArgumentException e) {
+                System.out.println("Falha ao cadastrar modelo " + m.getName() + ": " + e.getMessage());
+            }
+        }
+    }
+
     private void seedVehicles() {
-        List<Vehicle> vehicles = VehicleSeed.getVehicles(vechileModelService.getAllModels());
+        List<Vehicle> vehicles = VehicleSeed.getVehicles(vehicleModelService.findAll());
         for (Vehicle v : vehicles) {
             try {
                 vehicleService.createVehicle(v);
