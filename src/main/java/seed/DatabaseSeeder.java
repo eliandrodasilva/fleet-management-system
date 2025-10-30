@@ -7,12 +7,13 @@ import java.util.List;
 
 public class DatabaseSeeder {
 
-    private VehicleBrandService vehicleBrandService = new VehicleBrandService();
-    private VehicleModelService vehicleModelService = new VehicleModelService();
-    private VehicleService vehicleService = new VehicleService();
-    private DriverService driverService = new DriverService();
-    private ScheduledServiceService scheduledServiceService = new ScheduledServiceService();
-    private LocationService locationService = new LocationService();
+    private final VehicleBrandService vehicleBrandService = new VehicleBrandService();
+    private final VehicleModelService vehicleModelService = new VehicleModelService();
+    private final VehicleService vehicleService = new VehicleService();
+    private final DriverService driverService = new DriverService();
+    private final ScheduledServiceService scheduledServiceService = new ScheduledServiceService();
+    private final LocationService locationService = new LocationService();
+    private final RouteService routeService = new RouteService();
 
 
     public void seedAll() {
@@ -22,6 +23,7 @@ public class DatabaseSeeder {
         seedDrivers();
         seedScheduledServices();
         seedLocations();
+        seedRoutes();
     }
 
     private void seedVehicleBrands() {
@@ -98,6 +100,18 @@ public class DatabaseSeeder {
         }
     }
 
+    private void seedRoutes() {
+        List<Route> routes = RouteSeed.getRoutes();
+        for (Route r : routes) {
+            try {
+                routeService.createRoute(r);
+                System.out.println("Rota cadastrada: " + r.getOrigin().getName() + " -> " + r.getDestination().getName()
+                + " | " + r.getDistance() + "km");
+            } catch (IllegalArgumentException e) {
+                System.out.println("Fala ao cadastrar rota: " + e.getMessage());
+            }
+        }
+    }
 
     public static void main(String[] args) {
         DatabaseSeeder seeder = new DatabaseSeeder();
