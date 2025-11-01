@@ -5,8 +5,8 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "routes")
-public class Route {
+@Table(name = "route_segments")
+public class RouteSegment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,9 +29,10 @@ public class Route {
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
 
-    public Route() {}
+    public RouteSegment() {
+    }
 
-    public Route(Location origin, Location destination, BigDecimal distance) {
+    public RouteSegment(Location origin, Location destination, BigDecimal distance) {
         this.origin = origin;
         this.destination = destination;
         this.distance = distance;
@@ -86,7 +87,7 @@ public class Route {
 
     @Override
     public String toString() {
-        return "ScheduledService{" +
+        return "RouteSegment{" +
                 "id=" + id +
                 ", origin=" + (destination.getName()) +
                 ", destination=" + destination.getName() +

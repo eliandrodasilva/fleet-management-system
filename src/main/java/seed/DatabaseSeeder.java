@@ -13,7 +13,7 @@ public class DatabaseSeeder {
     private final DriverService driverService = new DriverService();
     private final ScheduledServiceService scheduledServiceService = new ScheduledServiceService();
     private final LocationService locationService = new LocationService();
-    private final RouteService routeService = new RouteService();
+    private final RouteSegmentService routeSegmentService = new RouteSegmentService();
 
 
     public void seedAll() {
@@ -23,7 +23,7 @@ public class DatabaseSeeder {
         seedDrivers();
         seedScheduledServices();
         seedLocations();
-        seedRoutes();
+        seedRouteSegments();
     }
 
     private void seedVehicleBrands() {
@@ -100,15 +100,15 @@ public class DatabaseSeeder {
         }
     }
 
-    private void seedRoutes() {
-        List<Route> routes = RouteSeed.getRoutes();
-        for (Route r : routes) {
+    private void seedRouteSegments() {
+        List<RouteSegment> routeSegments = RouteSegmentSeed.getRoutes();
+        for (RouteSegment r : routeSegments) {
             try {
-                routeService.createRoute(r);
-                System.out.println("Rota cadastrada: " + r.getOrigin().getName() + " -> " + r.getDestination().getName()
+                routeSegmentService.createRoute(r);
+                System.out.println("Segmento de rota cadastrado: " + r.getOrigin().getName() + " -> " + r.getDestination().getName()
                 + " | " + r.getDistance() + "km");
             } catch (IllegalArgumentException e) {
-                System.out.println("Fala ao cadastrar rota: " + e.getMessage());
+                System.out.println("Fala ao cadastrar segmento: " + e.getMessage());
             }
         }
     }
