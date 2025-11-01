@@ -59,7 +59,7 @@ public class VehicleModel {
 
     @Override
     public String toString() {
-        return "Vehicle{" +
+        return "VehicleModel{" +
                 "id=" + id +
                 ", name=" + name + '\'' +
                 ", brand=" + brand + '\'' +

@@ -49,7 +49,7 @@ public class VehicleBrand {
 
     @Override
     public String toString() {
-        return "Vehicle{" +
+        return "VehicleBrand{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';
