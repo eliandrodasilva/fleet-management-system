@@ -159,12 +159,9 @@ public class Driver {
 
     @Override
     public String toString() {
-        return "Driver{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", licenseNumber='" + licenseNumber + '\'' +
-                ", createdAt=" + createdAt +
-                ", updatedAt=" + updatedAt +
-                '}';
+        return String.format(
+                "Driver{id=%d, name=%s, licenseNumber=%s, createdAt=%s, updatedAt=%s}",
+                id, name, licenseNumber, createdAt, updatedAt
+        );
     }
 }

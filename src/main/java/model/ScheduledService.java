@@ -142,17 +142,9 @@ public class ScheduledService {
 
     @Override
     public String toString() {
-        return "ScheduledService{" +
-                "id=" + id +
-                ", vehicle=" + (vehicle != null ? vehicle.getId() : null) +
-                ", serviceType=" + serviceType +
-                ", scheduledDate=" + scheduledDate +
-                ", estimatedCost=" + estimatedCost +
-                ", description='" + description + '\'' +
-                ", servicePriority=" + servicePriority +
-                ", serviceStatus=" + serviceStatus +
-                ", createdAt=" + createdAt +
-                ", updatedAt=" + updatedAt +
-                '}';
+        return String.format(
+                "ScheduledService{id=%d, vehicleId=%d, serviceType=%s, scheduledDate=%s, estimatedCost=%s, description='%s', servicePriority=%s, serviceStatus=%s, createdAt=%s, updatedAt=%s}",
+                id, vehicle.getId(), serviceType, scheduledDate, estimatedCost, description, servicePriority, serviceStatus, createdAt, updatedAt
+        );
     }
 }

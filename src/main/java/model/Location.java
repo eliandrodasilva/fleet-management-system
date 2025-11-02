@@ -59,11 +59,9 @@ public class Location {
 
     @Override
     public String toString() {
-        return "Location{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", createdAt=" + createdAt +
-                ", updatedAt=" + updatedAt +
-                '}';
+        return String.format(
+                "Location{id=%d, name=%s, createdAt=%s, updatedAt=%s}",
+                id, name, createdAt, updatedAt
+        );
     }
 }

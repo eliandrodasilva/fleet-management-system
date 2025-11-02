@@ -124,16 +124,9 @@ public class Vehicle {
 
     @Override
     public String toString() {
-        return "Vehicle{" +
-                "id=" + id +
-                ", licensePlate=" + licensePlate + '\'' +
-                ", brand=" + brand + '\'' +
-                ", model=" + model + '\'' +
-                ", modelYear=" + modelYear +
-                ", currentKilometers=" + currentKilometers +
-                ", status=" + status +
-                ", createdAt=" + createdAt +
-                ", updatedAt=" + updatedAt +
-                '}';
+        return String.format(
+                "Vehicle{id=%d, license_plate=%s, brand_id=%s, model_id=%s, model_year=%s, current_kilometers=%skm, status=%s, createdAt=%s, updatedAt=%s}",
+                id, licensePlate, brand.getId(), model.getId(), modelYear, currentKilometers, status, createdAt, updatedAt
+        );
     }
 }

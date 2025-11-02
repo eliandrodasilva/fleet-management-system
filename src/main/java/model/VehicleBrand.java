@@ -49,9 +49,9 @@ public class VehicleBrand {
 
     @Override
     public String toString() {
-        return "VehicleBrand{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+        return String.format(
+                "VehicleBrand{id=%d, name=%s, createdAt=%s, updatedAt=%s}",
+                id, name, createdAt, updatedAt
+        );
     }
 }

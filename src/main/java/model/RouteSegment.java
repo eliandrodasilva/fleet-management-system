@@ -87,13 +87,9 @@ public class RouteSegment {
 
     @Override
     public String toString() {
-        return "RouteSegment{" +
-                "id=" + id +
-                ", origin=" + (destination.getName()) +
-                ", destination=" + destination.getName() +
-                ", distance=" + distance +
-                ", createdAt=" + createdAt +
-                ", updatedAt=" + updatedAt +
-                '}';
+        return String.format(
+                "RouteSegment{id=%d, origin_id=%s, destination_id=%s, distance=%s km, createdAt=%s, updatedAt=%s}",
+                id, origin.getId(), destination.getId(), distance, createdAt, updatedAt
+        );
     }
 }

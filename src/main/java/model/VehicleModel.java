@@ -59,10 +59,9 @@ public class VehicleModel {
 
     @Override
     public String toString() {
-        return "VehicleModel{" +
-                "id=" + id +
-                ", name=" + name + '\'' +
-                ", brand=" + brand + '\'' +
-                '}';
+        return String.format(
+                "VehicleModel{id=%d, name=%s, brand=%s, createdAt=%s, updatedAt=%s}",
+                id, name, brand.getName(), createdAt, updatedAt
+        );
     }
 }
