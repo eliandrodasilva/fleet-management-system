@@ -35,15 +35,15 @@ public class ScheduledServiceService {
         }
     }
 
-    public ScheduledService getById(Long id) {
+    public ScheduledService findById(Long id) {
         return scheduledServiceDAO.findById(id);
     }
 
-    public List<ScheduledService> getByStatus(ServiceStatus status) {
+    public List<ScheduledService> findByStatus(ServiceStatus status) {
         return scheduledServiceDAO.findByStatus(status);
     }
 
-    public List<ScheduledService> getAll() {
+    public List<ScheduledService> findAll() {
         return scheduledServiceDAO.findAll();
     }
 

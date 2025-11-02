@@ -7,7 +7,7 @@ import java.util.List;
 
 public class DriverService {
 
-    private final DriverDAO driverDAO = new DriverDAO();
+    private DriverDAO driverDAO = new DriverDAO();
 
     public void createDriver(Driver driver) {
         driver.validate();
@@ -32,19 +32,19 @@ public class DriverService {
         }
     }
 
-    public List<Driver> getAllDrivers() {
+    public List<Driver> findAll() {
         return driverDAO.findAll();
     }
 
-    public Driver getDriverById(Long id) {
+    public Driver findById(Long id) {
         return driverDAO.findById(id);
     }
 
-    public Driver getDriverByCPF(String cpf) {
+    public Driver findByCPF(String cpf) {
         return driverDAO.findByCPF(cpf);
     }
 
-    public Driver getDriverByLicenseNumber(String license) {
+    public Driver findByLicenseNumber(String license) {
         return driverDAO.findByLicenseNumber(license);
     }
 }

@@ -52,15 +52,15 @@ public class VehicleService {
         return vehicleDAO.findAll();
     }
 
-    public Vehicle getVehicleById(Long id) {
+    public Vehicle findById(Long id) {
         return vehicleDAO.findById(id);
     }
 
-    public Vehicle getVehicleByLicensePlate(String plate) {
+    public Vehicle findByLicensePlate(String plate) {
         return vehicleDAO.findByLicensePlate(plate);
     }
 
-    public List<Vehicle> getVehiclesByStatus(String status) {
+    public List<Vehicle> findByStatus(String status) {
         return vehicleDAO.findByStatus(status);
     }
 
