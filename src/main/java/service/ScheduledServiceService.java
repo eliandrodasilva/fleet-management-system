@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ScheduledServiceService {
 
-    private ScheduledServiceDAO scheduledServiceDAO = new ScheduledServiceDAO();
+    private final ScheduledServiceDAO scheduledServiceDAO = new ScheduledServiceDAO();
 
     public void createScheduledService(ScheduledService service) {
         validateService(service);

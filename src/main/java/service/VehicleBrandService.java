@@ -7,7 +7,7 @@ import java.util.List;
 
 public class VehicleBrandService {
 
-    private VehicleBrandDAO vehicleBrandDAO = new VehicleBrandDAO();
+    private final VehicleBrandDAO vehicleBrandDAO = new VehicleBrandDAO();
 
     public void createVehicleBrand(VehicleBrand brand) {
         validateVehicleBrand(brand);

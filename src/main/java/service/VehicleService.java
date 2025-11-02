@@ -9,7 +9,7 @@ import java.util.List;
 
 public class VehicleService {
 
-    private VehicleDAO vehicleDAO = new VehicleDAO();
+    private final VehicleDAO vehicleDAO = new VehicleDAO();
 
     public void createVehicle(Vehicle vehicle) {
         validateLicensePlateUnique(vehicle.getLicensePlate());
@@ -48,7 +48,9 @@ public class VehicleService {
         }
     }
 
-    public List<Vehicle> getAllVehicles() {return vehicleDAO.findAll();}
+    public List<Vehicle> getAllVehicles() {
+        return vehicleDAO.findAll();
+    }
 
     public Vehicle getVehicleById(Long id) {
         return vehicleDAO.findById(id);

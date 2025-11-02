@@ -7,7 +7,7 @@ import java.util.List;
 
 public class DriverService {
 
-    private DriverDAO driverDAO = new DriverDAO();
+    private final DriverDAO driverDAO = new DriverDAO();
 
     public void createDriver(Driver driver) {
         driver.validate();
