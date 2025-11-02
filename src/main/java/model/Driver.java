@@ -14,10 +14,10 @@ public class Driver {
     @Column(name = "name", length = 255, nullable = false)
     private String name;
 
-    @Column(name = "cpf", length = 11, nullable = false)
+    @Column(name = "cpf", length = 11, nullable = false, unique = true)
     private String cpf;
 
-    @Column(name = "license_number", length = 11, nullable = false)
+    @Column(name = "license_number", length = 11, nullable = false, unique = true)
     private String licenseNumber;
 
     @Column(name = "created_at", nullable = false, updatable = false)
