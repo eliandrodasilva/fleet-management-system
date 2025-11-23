@@ -52,6 +52,10 @@ public class VehicleService {
         return vehicleDAO.findAll();
     }
 
+    public List<Vehicle> findAll() {
+        return vehicleDAO.findAll();
+    }
+
     public Vehicle findById(Long id) {
         return vehicleDAO.findById(id);
     }
