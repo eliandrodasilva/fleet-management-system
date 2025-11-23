@@ -11,18 +11,15 @@ public class RouteService {
     private final DriverService driverService = new DriverService();
     private final VehicleService vehicleService = new VehicleService();
     private final LocationService locationService = new LocationService();
+    private final RouteSegmentService routeSegmentService = new RouteSegmentService();
+    private final DijkstraService dijkstraService = new DijkstraService(routeSegmentService);
 
     public void createRoute(Route route) {
         validateRoute(route);
 
-        if (routeDAO.existsByDriverAndVehicle(route.getDriver().getId(), route.getVehicle().getId())) {
-            throw new IllegalArgumentException("O motorista ou veículo já está em outra rota ativa.");
-        }
-
-        // preciso realaviar isso aqui de outro modo (eu acho ://///)
-        // pathData = DijkstraService(route.getOrigin(), route.getDestination());
-        // route.setPath = pathData.getPath();
-        // route.setTotalDistance = pathData.getTotalDistance();
+        DijkstraService.PathResult pathData = dijkstraService.findShortestPath(route.getOrigin(), route.getDestination());
+        route.setPath(pathData.getPathString());
+        route.setTotalDistance(pathData.getTotalDistance());
 
         routeDAO.save(route);
     }
@@ -51,6 +48,14 @@ public class RouteService {
     }
 
     private void validateRoute(Route route){
+        if (routeDAO.existsByDriver(route.getDriver().getId())) {
+            throw new IllegalArgumentException("O motorista já está em outra rota ativa.");
+        }
+
+        if (routeDAO.existsByVehicle(route.getVehicle().getId())) {
+            throw new IllegalArgumentException("O veículo já está em outra rota ativa.");
+        }
+
         if (route.getDriver() == null || driverService.findById(route.getDriver().getId()) == null) {
             throw new IllegalArgumentException("Motorista inválido.");
         }
