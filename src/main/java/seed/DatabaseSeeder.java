@@ -14,6 +14,7 @@ public class DatabaseSeeder {
     private final ScheduledServiceService scheduledServiceService = new ScheduledServiceService();
     private final LocationService locationService = new LocationService();
     private final RouteSegmentService routeSegmentService = new RouteSegmentService();
+    private final RouteService routeService = new RouteService();
 
 
     public void seedAll() {
@@ -24,6 +25,7 @@ public class DatabaseSeeder {
         seedScheduledServices();
         seedLocations();
         seedRouteSegments();
+        seedRoutes();
     }
 
     private void seedVehicleBrands() {
@@ -112,6 +114,21 @@ public class DatabaseSeeder {
             }
         }
     }
+
+    private void seedRoutes() {
+        List<Route> routes = RouteSeed.getRoutes();
+        for (Route r : routes) {
+            try {
+                routeService.createRoute(r);
+                System.out.println("Rota cadastrada: Driver " + r.getDriver().getName() +
+                        ", Vehicle " + r.getVehicle().getLicensePlate() +
+                        ", " + r.getOrigin().getName() + " -> " + r.getDestination().getName());
+            } catch (IllegalArgumentException e) {
+                System.out.println("Falha ao cadastrar rota: " + e.getMessage());
+            }
+        }
+    }
+
 
     public static void main(String[] args) {
         DatabaseSeeder seeder = new DatabaseSeeder();
