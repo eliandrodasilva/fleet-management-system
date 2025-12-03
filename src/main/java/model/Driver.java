@@ -130,6 +130,14 @@ public class Driver {
         this.name = name;
     }
 
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
     public String getLicenseNumber() {
         return licenseNumber;
     }
