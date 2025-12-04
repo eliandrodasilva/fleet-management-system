@@ -1,6 +1,7 @@
 package view.dashboard;
 
 import view.list.ListPanel;
+import view.form.FormPanel;
 import view.seeder.SeederPanel;
 
 import javax.swing.*;
@@ -16,7 +17,7 @@ public class MainDashboard extends JFrame {
         JTabbedPane mainTabs = new JTabbedPane();
 
         mainTabs.addTab("Relatórios e Listagens", new ListPanel());
-//        mainTabs.addTab("Cadastros", new FormPanel());
+        mainTabs.addTab("Cadastros", new FormPanel());
 //        mainTabs.addTab("Atualizar Informações", new FormPanel());
         mainTabs.addTab("Popular BD", new SeederPanel());
 
